@@ -11,5 +11,55 @@
             <div id="options"></div>
             <button id = "submit">submit answer</button>
         </div>
+        <script>
+            const data= [
+            {
+                question: "What is 4*4?",
+                options: ["16", "24", "18", "8"],
+                answer: "16"
+            },
+            ];
+            const question_doc = document.getElementById("question");
+            const options_doc = document.getElementById("options");
+            const submit_doc = document.getElementById("submit");
+            let question_num = 0;
+            let total = 0;
+            function question_data() {
+                const question = data[question_num];
+                question_doc.innerText = question.question;
+                options_doc.innerHTML = "";
+                question.options.forEach(option => {
+                    const button = document.createElement("button");
+                    button.innerText = option;
+                    options_doc.appendChild(button);
+                    button.addEventListener("click", answer_logic);
+                })
+            }
+            function answer_logic(x) {
+                const selection = x.target;
+                const answer = data[question_num].answer;
+                if (selection.innerText === answer) {
+                    total += 1;
+                    x.innerText = "correct!";
+                }
+                else {
+                    x.innerText = 'incorrect';
+                }
+                question_num += 1;
+                if (question_num < data.length) {
+                    question_data();
+                }
+                else {
+                    show_total();
+                }
+            }
+            function show_total() {
+                quis.innerHTML = `
+                <h1> quiz complete </h1>
+                <p> total points: ${total}/${data.length}</p>
+                `;
+            }
+            question_data();
+        </script>
     </body>
 </html>
