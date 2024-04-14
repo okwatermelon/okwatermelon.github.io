@@ -11,5 +11,21 @@ body {
 }
 h1 {
     text-align: center;
-    color: 	#008080;
+    color: 	#000000;
+}
+#question {
+    margin-bottom: 30px;
+}
+#options {
+    display: grid;
+    gap: 5px;
+    grid-template-columns: repeat(2,1fr);
+}
+button {
+    display: block;
+    margin: 0 auto;
+    background-color: rgb(0, 0, 0);
+    color: #000000;
+    border: none;
+    cursor: pointer;
 }
