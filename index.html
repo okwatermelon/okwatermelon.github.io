@@ -9,7 +9,7 @@
             <h1>Math Quiz</h1>
             <div id="question"></div>
             <div id="options"></div>
-            <button id = "submit">submit answer</button>
+            <div id ="feedback"></div>
         </div>
         <script>
             const data= [
@@ -18,10 +18,30 @@
                 options: ["16", "24", "18", "8"],
                 answer: "16"
             },
+            {
+                question: "What is 5 + 3?",
+                options: ["7", "8", "10", "6"],
+                answer: "8"
+            },
+            {
+                question: "What is 12 / 3?",
+                options: ["3", "4", "6", "8"],
+                answer: "4"
+            },
+            {
+                question: "What is 9 - 5?",
+                options: ["2", "3", "4", "5"],
+                answer: "4"
+            },
+            {
+                question: "What is 2 * 7?",
+                options: ["10", "12", "14", "16"],
+                answer: "14"
+            }
             ];
             const question_doc = document.getElementById("question");
             const options_doc = document.getElementById("options");
-            const submit_doc = document.getElementById("submit");
+            const feedback_doc = document.getElementById("feedback");
             let question_num = 0;
             let total = 0;
             function question_data() {
@@ -40,10 +60,10 @@
                 const answer = data[question_num].answer;
                 if (selection.innerText === answer) {
                     total += 1;
-                    x.innerText = "correct!";
+                    feedback_doc.innerText = "last answer was correct!";
                 }
                 else {
-                    x.innerText = 'incorrect';
+                    feedback_doc.innerText = 'last answer was incorrect';
                 }
                 question_num += 1;
                 if (question_num < data.length) {
@@ -54,9 +74,10 @@
                 }
             }
             function show_total() {
-                quis.innerHTML = `
-                <h1> quiz complete </h1>
+                quiz.innerHTML = `
+                <h1> Quiz Complete! </h1>
                 <p> total points: ${total}/${data.length}</p>
+                <p> ${feedback_doc.innerText} </p>
                 `;
             }
             question_data();
